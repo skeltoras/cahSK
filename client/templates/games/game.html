@@ -1,0 +1,199 @@
+<template name="gameSingle">
+  {{#if checkPassword}}
+    {{> gameSingleModal}}
+    {{> gameSingleItem}}
+  {{else}}
+    {{> gameSingleItem}}
+  {{/if}}  
+  <div class="spacer-20"></div>
+  <div class="panel panel-danger">
+    <div class="panel-heading"> 
+      Debug:
+    </div>
+    <div class="panel-body">
+      {{debug}} 
+    </div>
+  </div> 
+</template>
+
+<template name="gameSingleItem">
+  <div class="gameSingle">
+    <div class="row">
+      <!-- controlls -->
+      <div class="col-sm-12"> 
+        <div class="well well-sm">
+          {{#if ownPost}}
+            <button type="button" class="btn btn-default begin">Starten</button>
+          {{else}}
+            <button type="button" class="btn btn-default" disabled="disabled">Starten</button>
+          {{/if}}
+          <button type="button" class="btn btn-default leave">Spiel verlassen</button>      
+        </div>
+      </div>            
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-3">
+        {{> gameSinglePlayerlist}}
+      </div>
+      <div class="col-sm-9">
+        {{#if ownPost}}
+          {{> gameSingleEdit}}
+        {{else}}
+          {{> gameSingleShow}}  
+        {{/if}}  
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-9 pull-right">
+        {{> gameSingleChat}}
+      </div>
+    </div>
+  </div> 
+</template>
+
+<template name="gameSingleModal">
+  <!-- Modal -->
+    <div class="modal fade" id="passModal_{{_id}}" tabindex="-1" role="dialog" aria-labelledby="passModal" aria-hidden="false">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form class="form-horizontal" role="form">    
+              <div class="col-sm-8">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="gamePassCheck" name="gamePassCheck" placeholder="Passwort">
+                  <input type="hidden" class="form-control hide" id="gameID" name="gameID" value="{{_id}}">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input type="submit" value="Beitreten" class="btn btn-default pull-right"/>
+                </div>
+              </div>
+              &nbsp;
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
+
+<template name="gameSinglePlayerlist">
+  <div class="panel panel-default">
+    <div class="panel-body">
+    Playerlist (soon...)
+    </div>
+  </div> 
+</template>
+
+<template name="gameSingleEdit">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form class="form-horizontal" role="form">     
+        <div class="form-group">
+          <label for="gameTitle" class="col-sm-3 control-label">Spielname</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="gameTitle" name="gameTitle" value="{{gameTitle}}" placeholder="">
+          </div>
+        </div>        
+        <div class="form-group">
+          <label for="scoreMax" class="col-sm-3 control-label">Max. Score</label>
+          <div class="col-sm-2">
+            <select class="form-control" name="scoreMax" id="scoreMax" value="{{scoreMax}}">
+              <option value="4">4</option>
+              <option value="8">8</option>
+              <option value="12">12</option>
+              <option value="16">16</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="playersMax" class="col-sm-3 control-label">Max. Spieler</label>
+          <div class="col-sm-2">
+            <select class="form-control" name="playersMax" id="playersMax">
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+            </select>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="spectatorsMax" class="col-sm-3 control-label">Max. Zuschauer</label>
+          <div class="col-sm-2">
+            <select class="form-control" name="spectatorsMax" id="spectatorsMax">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Decks</label>
+          <div class="col-sm-9">
+            {{#each decks}}
+              <label for="deck_{{_id}}" class="checkbox inline">
+                <input id="deck_{{_id}}" type="checkbox" value="{{_id}}" name="decks" /> {{deckText}}
+              </label>
+            {{/each}}
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="gamePass" class="col-sm-3 control-label">Passwort</label>        
+          <div class="col-sm-6">
+            <input type="password" class="form-control" id="gamePass" name="gamePass" value="" placeholder="Game password">
+          </div>
+          <div class="col-sm-3">
+            <label for="showPassword" class="checkbox-inline">
+              <input type="checkbox" id="showPassword" name="showPassword"> anzeigen
+            </label>
+          </div>
+        </div>
+    
+        <div class="control-group">
+          <div class="controls">
+            <input type="submit" value="Erstellen" class="btn btn-primary"/>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>      
+</template>
+
+<template name="gameSingleShow">
+  <div class="panel panel-default">
+    <div class="panel-body">
+    Show
+    </div>
+  </div>      
+</template>
+
+<template name="gameSingleChat">
+  <div class="panel panel-default">
+    <div class="panel-body">
+    Chat
+    </div>
+  </div>      
+</template>

@@ -1,0 +1,41 @@
+<template name="gamesHome">
+  <div class="games">
+    <div class="row">
+    {{#each games}}
+      {{> gameItem}}
+    {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="gameItem">
+    <div class="col-sm-6"> 
+      <div class="panel panel-default">
+        <div class="panel-heading"> 
+          {{#if checkPassword}}<span class="glyphicon glyphicon-lock"></span>&nbsp;&nbsp;{{/if}}<strong>{{gameTitle}} von {{gameMaster}}</strong> <span class="badge pull-right">{{gameStatus}}</span>
+        </div>
+        <div class="panel-body">
+          <div class="col-sm-9">
+            <small>
+              <strong>Max. Punkte:</strong> {{scoreMax}}<br>
+              <strong>Spieler ({{playersIn}}/{{playersMax}}):</strong> {{playerList}} <br>
+              <strong>Zuschauer ({{spectatorsIn}}/{{spectatorsMax}}):</strong> {{spectatorsList}} <br>              
+              <strong>Kartendecks:</strong> {{decksList}}<br>
+              {{passDebug}} / {{_id}} / {{playerID}}                    
+            </small>
+          </div>
+          <div class="col-sm-3">
+            {{#if currentUser}}
+              {{#if checkPassword}}
+                <button type="button" data-toggle="modal" data-target="#passModal_{{_id}}" class="btn btn-default pull-right">Beitreten</button>
+              {{else}}
+                <button type="button" id="game_{{_id}}" class="btn btn-default pull-right redirect">Beitreten</button>
+              {{/if}}
+            {{else}}
+              <button type="button" id="game_{{_id}}" class="btn btn-default pull-right loginFirst">Beitreten</button>
+            {{/if}}   
+          </div>
+        </div>
+      </div>
+    </div>        
+</template>

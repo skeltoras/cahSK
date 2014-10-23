@@ -1,0 +1,44 @@
+body {
+  background: #eee;
+  color: #666666;
+}
+
+#spinner { height: 300px }
+
+.panel-card {
+  color: rgba(0,0,0,1);
+  font-size: 2.2em;
+  font-weight: bold;
+  height: 300px;
+  width: 228px;
+  -webkit-box-shadow: 3px 2px 5px #aaa;
+  -moz-box-shadow: 3px 2px 5px #aaa;
+  box-shadow: 3px 2px 5px #aaa; 
+}
+
+.panel-card small {
+  font-size: 0.3em;
+}
+
+.panel-black {
+  background-color: rgba(0,0,0,1);
+  color: rgba(255,255,255,1);
+}
+
+.box {
+  margin-right: 0;
+  margin-left: 0;
+  background-color: #fff;
+  border-color: #ddd;
+  border-width: 1px;
+  border-radius: 4px 4px 0 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  position: relative;
+  padding: 45px 15px 15px;
+  margin: 0 -15px 15px;
+}
+
+.spacer-20 {
+  min-height: 20px;
+}
