@@ -1,9 +1,32 @@
 Template.gameItem.events({
   'click .redirect': function(e) {
-    e.preventDefault();    
-    var currentGameId = this._id
-    var player = Meteor.userId();
-    Router.go('gameSingle', {_id: currentGameId});
+    e.preventDefault();
+    
+    
+    
+    gameId = this._id;
+    player = Meteor.userId();
+    playerName = Meteor.user().username;
+    
+    Games.update(gameId, {$addToSet: {playerList: playerName}, $set: {changed: new Date().getTime()}, $inc: {playersIn: 1}});
+    //Games.update(gameId, );
+    //Games.update(gameId, );
+    
+    /*    
+    var game = {
+      currentGameId: gameId,
+      player: playerId   
+    };
+    console.log(game);
+    Meteor.call('playerAdd', game, function(error, result) {
+      // display the error to the user and abort
+      if (error)
+        return throwError(error.reason);
+
+      Router.go('gameSingle', {_id: currentGameId});  
+    });
+    */ 
+    Router.go('gameSingle', {_id: gameId});   
   },
   
   'click .loginFirst': function(e) {

@@ -11,7 +11,9 @@ Template.gamesNew.events({
     var game = {
       gameTitle: $(e.target).find('[name=gameTitle]').val(),
       scoreMax: $(e.target).find('[name=scoreMax]').val(),
+      playersIn: 0,
       playersMax: $(e.target).find('[name=playersMax]').val(),
+      spectatorsIn: 0,
       spectatorsMax: $(e.target).find('[name=spectatorsMax]').val(),
       gamePass: $(e.target).find('[name=gamePass]').val(),
       decks: decks,

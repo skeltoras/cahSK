@@ -62,4 +62,8 @@ if (Decks.find().count() === 0) {
     deckText: 'default',
     cardSubscriber: 'RainbowDash'
   });
+  Decks.insert({
+    deckText: 'Deck2',
+    cardSubscriber: 'RainbowDash'
+  });
 }
