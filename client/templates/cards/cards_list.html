@@ -1,0 +1,20 @@
+<template name="cardsList">
+  <div class="cards">
+    <div class="row">
+      {{#each cards}}
+        {{> cardItem}}
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="cardItem">
+  <div class="col-sm-4"> 
+    <div class="panel panel-card {{isBlack}}">
+      <div class="panel-body">
+        <p>{{cardText}}</p>
+        <small>{{cardSubscriber}} / Black Card: {{cardIsBlack}} {{#if cardNeededWhite}}/ For: {{cardNeededWhite}}{{/if}} / <a href="{{pathFor 'cardSingle'}}">Edit</a></small>
+      </div>
+    </div>
+  </div>
+</template>

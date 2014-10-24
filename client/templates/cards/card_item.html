@@ -1,0 +1,13 @@
+<template name="cardItemOld">
+  <div class="card">
+    <div class="card-content">
+      <h3><a href="{{pathFor 'cardPage'}}">{{cardText}} </a><span>{{cardSubscriber}}</span></h3>
+      IsBlack: {{cardIsBlack}}<br>
+      Needed White: {{cardNeededWhite}} 
+      <p>
+        {{#if ownPost}}<a href="{{pathFor 'cardEdit'}}">Edit</a>{{/if}}
+      </p>
+    </div>
+  </div>
+</template>
+

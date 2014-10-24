@@ -11,7 +11,7 @@
       
       <div class="form-group">
         <label for="scoreMax" class="col-sm-3 control-label">Max. Score</label>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <select class="form-control" name="scoreMax" id="scoreMax">
             <option>4</option>
             <option>8</option>
@@ -24,7 +24,7 @@
       
       <div class="form-group">
         <label for="playersMax" class="col-sm-3 control-label">Max. Spieler</label>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <select class="form-control" name="playersMax" id="playersMax">
             <option>3</option>
             <option>4</option>
@@ -50,7 +50,7 @@
   
       <div class="form-group">
         <label for="spectatorsMax" class="col-sm-3 control-label">Max. Zuschauer</label>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <select class="form-control" name="spectatorsMax" id="spectatorsMax">
             <option>0</option>
             <option>1</option>
@@ -67,7 +67,7 @@
         <div class="col-sm-9">
           {{#each decks}}
             <label for="deck_{{_id}}" class="checkbox inline">
-              <input id="deck_{{_id}}" type="checkbox" value="{{_id}}" name="decks" /> {{deckText}}
+              <input id="deck_{{_id}}" type="checkbox" value="{{deckText}}" name="decks" /> {{deckText}}
             </label>
           {{/each}}
         </div>

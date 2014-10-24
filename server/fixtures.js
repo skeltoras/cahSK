@@ -2,58 +2,70 @@
 if (Games.find().count() === 0) {
   Games.insert({
     gameTitle: 'Game #1',
+    scoreMax: 10,
+    playersIn: 3,
+    playersMax: 20,
+    spectatorsIn: 10,
+    spectatorsMax: 0,
+    gamePass: '',
+    decks: ['default'],
+    playerList: ['Hufflepuff', 'Degado', 'Hansi'],
+    spectatorList: [],
+    userId: '9S4WKMk6jfTCcPnBd',
     gameMaster: 'RainbowDash',
-    scoreMax: '10',
-    playersIn: '3',
-    playersMax: '20',
-    playerList: ['Hufflepuff, Degado, Hansi'],
-    spectatorsIn: '0',
-    spectatorsMax: '0',
-    spectatorsList: false,
-    decksList: ['default'],
-    gamePass: false
+    submitted: 1414142012903,
+    changed: 1414142012903
   });
 
   Games.insert({
     gameTitle: 'Game #2',
-    gameMaster: 'Skeltoras',
-    scoreMax: '10',
-    playersIn: '10',
-    playersMax: '10',
+    scoreMax: 10,
+    playersIn: 10,
+    playersMax: 10,
+    spectatorsIn: 0,
+    spectatorsMax: 0,
+    gamePass: '1234',
+    decks: ['default', 'Deck2'],
     playerList: ['Domenic', 'Angelo', 'Bryce', 'Tristan', 'Noe', 'Reyes', 'Howard', 'Daren', 'Xavier', 'Marcos'],
-    spectatorsIn: '0',
-    spectatorsMax: '0',
-    spectatorsList: false,
-    decksList: ['default'],
-    gamePass: '1234'
+    spectatorList: [],
+    userId: '9S4WKMk6jfTCcPnBd',
+    gameMaster: 'RainbowDash',
+    submitted: 1414142012903,
+    changed: 1414142012903
   });
   
   Games.insert({
     gameTitle: 'Game #3',
-    gameMaster: 'Cougar',
-    scoreMax: '20',
-    playersIn: '2',
-    playersMax: '16',
-    playerList: ['Antoine, James'],
-    spectatorsIn: '0',
-    spectatorsMax: '0',
-    spectatorsList: false,
-    decksList: ['default'],
-    gamePass: false
+    scoreMax: 20,
+    playersIn: 2,
+    playersMax: 20,
+    spectatorsIn: 0,
+    spectatorsMax: 10,
+    gamePass: '',
+    decks: ['default'],
+    playerList: ['Antoine', 'James'],
+    spectatorList: [],
+    userId: '9S4WKMk6jfTCcPnBd',
+    gameMaster: 'RainbowDash',
+    submitted: 1414142012903,
+    changed: 1414142012903
   });
   
   Games.insert({
     gameTitle: 'Game #4',
-    gameMaster: 'RainbowDash',
-    scoreMax: '16',
-    playersIn: '0',
-    playersMax: '8',
+    scoreMax: 16,
+    playersIn: 0,
+    playersMax: 8,
+    spectatorsIn: 0,
+    spectatorsMax: 0,
+    gamePass: '',
+    decks: ['Deck2'],
     playerList: [],
-    spectatorsIn: '0',
-    spectatorsMax: '0',
-    spectatorsList: false,
-    decksList: ['default'],
-    gamePass: false
+    spectatorList: [],
+    userId: '9S4WKMk6jfTCcPnBd',
+    gameMaster: 'RainbowDash',
+    submitted: 1414142012903,
+    changed: 1414142012903
   });
 }
 // Default Decks entries

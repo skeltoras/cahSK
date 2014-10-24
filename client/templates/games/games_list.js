@@ -1,14 +1,18 @@
 Template.gameItem.events({
   'click .redirect': function(e) {
     e.preventDefault();
-    
-    
-    
+
     gameId = this._id;
     player = Meteor.userId();
     playerName = Meteor.user().username;
     
-    Games.update(gameId, {$addToSet: {playerList: playerName}, $set: {changed: new Date().getTime()}, $inc: {playersIn: 1}});
+    if (Games.find({_id: gameId, playerList: playerName}).count() === 1) {
+      // do nothing
+    } else {
+      Games.update(gameId, {$addToSet: {playerList: playerName}, $set: {changed: new Date().getTime()}, $inc: {playersIn: 1}});
+      console.log('Player ' + playerName + ' eingetragen');
+    }
+    
     //Games.update(gameId, );
     //Games.update(gameId, );
     
@@ -48,15 +52,6 @@ Template.gameItem.helpers({
   },
   gameStatus: function() {
     return 'Status';
-  },
-  playersIn: function() {
-    return '0';
-  },
-  spectatorsIn: function() {
-    return '0';
-  },
-  decksList: function() {
-    return 'default';
   },
   checkPassword: function() {    
     hasPassword = false;

@@ -3,8 +3,9 @@ cah - SK
 
 Changelog
 ---------
+v0.3.x
 
-v0.2.0
+v0.2.x
 * Added necessary files
 * Added routes for games
 * Added settings for games
