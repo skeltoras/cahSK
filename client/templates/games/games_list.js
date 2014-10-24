@@ -36,10 +36,6 @@ Template.gameItem.helpers({
   ownGame: function() {
     return this.userId === Meteor.userId();
   },
-  // not in use @since 0.1.0
-  gameStatus: function() {
-    return 'Status';
-  },
   // check for game pass @since 0.1.0
   checkPassword: function() {    
     hasPassword = false;

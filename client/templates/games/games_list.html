@@ -18,9 +18,9 @@
           <div class="col-sm-9">
             <small>
               <strong>Max. Punkte:</strong> {{scoreMax}}<br>
-              <strong>Spieler ({{playersIn}}/{{playersMax}}):</strong> {{playerList}} <br>
-              <strong>Zuschauer ({{spectatorsIn}}/{{spectatorsMax}}):</strong> {{spectatorList}} <br>              
-              <strong>Kartendecks:</strong> {{decks}}<br>                                  
+              <strong>Spieler ({{playersIn}}/{{playersMax}}):</strong> {{#each playerList}} <span class="playerList">{{this}} </span>{{/each}} <br>
+              <strong>Zuschauer ({{spectatorsIn}}/{{spectatorsMax}}):</strong> {{#each spectatorList}} <span class="specList">{{this}} </span>{{/each}} <br>              
+              <strong>Kartendecks:</strong> {{#each decks}} <span class="deckList">{{this}} </span>{{/each}}<br>                                  
             </small>
           </div>
           <div class="col-sm-3">

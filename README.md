@@ -6,7 +6,8 @@ Changelog
 v0.3.x
 * Fixed player join on game
 * Added full-game check on Gameslist
-* commented files
+* Commented files
+* Changed debug functions and array value presentation
 
 v0.2.x
 * Added necessary files
