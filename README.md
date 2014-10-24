@@ -5,6 +5,7 @@ Changelog
 ---------
 v0.3.x
 * Fixed player join on game
+* Added full-game check on Gameslist
 
 v0.2.x
 * Added necessary files

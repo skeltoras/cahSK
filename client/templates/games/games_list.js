@@ -60,6 +60,12 @@ Template.gameItem.helpers({
     }
     return hasPassword;
   },
+  checkPlayerFull: function() {
+    if(this.playersIn == this.playersMax){
+      console.log('Spiel ' + this.gameTitle + ' voll!');
+      return true;
+    }
+  },
   playerID: function() {
     var player = Meteor.userId();
     return player;  

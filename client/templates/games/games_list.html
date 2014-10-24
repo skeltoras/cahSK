@@ -25,15 +25,15 @@
             </small>
           </div>
           <div class="col-sm-3">
-            {{#if currentUser}}
-              {{#if checkPassword}}
-                <button type="button" data-toggle="modal" data-target="#passModal_{{_id}}" class="btn btn-default pull-right">Beitreten</button>
-              {{else}}
-                <button type="button" id="game_{{_id}}" class="btn btn-default pull-right redirect">Beitreten</button>
-              {{/if}}
+            {{#if checkPlayerFull}}
+              <button type="button" id="game_{{_id}}" class="btn btn-default pull-right disabled" disabled="disabled">Spiel voll</button>
             {{else}}
-              <button type="button" id="game_{{_id}}" class="btn btn-default pull-right loginFirst">Beitreten</button>
-            {{/if}}   
+              {{#if currentUser}}
+                <button type="button" id="game_{{_id}}" class="btn btn-default pull-right redirect">Beitreten</button>
+              {{else}}
+                <button type="button" id="game_{{_id}}" class="btn btn-default pull-right loginFirst">Beitreten</button>
+              {{/if}} 
+            {{/if}}  
           </div>
         </div>
       </div>
