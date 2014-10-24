@@ -3,6 +3,7 @@ Template.gamesNew.events({
     e.preventDefault();
 
     var playerList = [];
+    var spectatorList = [];
     var decks = [];
     $('input[name=decks]:checked').each(function() {
       decks.push($(this).val());
@@ -16,8 +17,10 @@ Template.gamesNew.events({
       spectatorsIn: 0,
       spectatorsMax: $(e.target).find('[name=spectatorsMax]').val(),
       gamePass: $(e.target).find('[name=gamePass]').val(),
+      gameStatus: 'offen',
       decks: decks,
-      playerList: playerList
+      playerList: playerList,
+      spectatorList: spectatorList
     };
     
     Meteor.call('game', game, function(error, result) {

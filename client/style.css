@@ -98,3 +98,9 @@ body {
 .spacer-20 {
   min-height: 20px;
 }
+
+.debug {
+  font-size: 0.8em;
+  color: rgba(200,200,200,0.8);
+  padding: 5px 15px;
+}

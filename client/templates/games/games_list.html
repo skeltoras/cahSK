@@ -20,8 +20,7 @@
               <strong>Max. Punkte:</strong> {{scoreMax}}<br>
               <strong>Spieler ({{playersIn}}/{{playersMax}}):</strong> {{playerList}} <br>
               <strong>Zuschauer ({{spectatorsIn}}/{{spectatorsMax}}):</strong> {{spectatorList}} <br>              
-              <strong>Kartendecks:</strong> {{decks}}<br>
-              {{passDebug}} / {{_id}} / {{playerID}}                    
+              <strong>Kartendecks:</strong> {{decks}}<br>                                  
             </small>
           </div>
           <div class="col-sm-3">
@@ -34,6 +33,9 @@
                 <button type="button" id="game_{{_id}}" class="btn btn-default pull-right loginFirst">Beitreten</button>
               {{/if}} 
             {{/if}}  
+          </div>
+          <div class="col-sm-12 debug">
+            {{passDebug}} / gID: {{_id}} / pId: {{playerID}}
           </div>
         </div>
       </div>
