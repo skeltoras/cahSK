@@ -8,6 +8,7 @@ v0.3.x
 * Added full-game check on Gameslist
 * Commented files
 * Changed debug functions and array value presentation
+* Fixed password-protection
 
 v0.2.x
 * Added necessary files

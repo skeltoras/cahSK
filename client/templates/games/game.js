@@ -1,13 +1,10 @@
 Template.gameSingle.events({
   'click .begin': function(e) {
-    e.preventDefault();    
-    
+    e.preventDefault();        
     console.log('click begin');
-  },
-  
+  },  
   'click .leave': function(e) {
-    e.preventDefault();
-    
+    e.preventDefault();    
     console.log('click leave');    
     Router.go('home');
   }  
@@ -18,16 +15,27 @@ Template.gameSingle.helpers({
     return this.userId == Meteor.userId();
   },
   checkPassword: function() {    
-    hasPassword = false;
-    if (this.gamePass) {
-      hasPassword = true;  
-    }
-    return hasPassword;
+    if (this.gamePass)
+      return true;
   },
   debug: function() {
     return 'userID: ' + Meteor.userId() + ' / gameID: ' + this._id;  
   }
 });
+
+Template.gameSingle.created = function(){
+  console.log('created ');
+  gameId = Session.get("gameId");
+  gamePass = Session.get("gamePass");
+  if (gamePass) {
+    var modalId = "#passModal_" + gameId;
+    return $(modalId).modal('show');       
+  }      
+};
+
+Template.gameSingle.destroyed = function(){
+  console.log('destroyed ');   
+};
 
 Template.gameSingleModal.events({
   'submit form': function(e) {
@@ -37,10 +45,8 @@ Template.gameSingleModal.events({
     var checkPass = $(e.target).find('[name=gamePassCheck]').val();
     
     if(this.gamePass == checkPass) {
-      $('#passModal_' + currentGameId).modal('hide');
-      //setTimeout(function() {
-      //  Router.go('gameSingle', {_id: currentGameId});
-      //}, 1000);
+      $('#passModal_' + currentGameId).removeClass( "show" ).addClass( "hide" );
+      console.log('hide');
     } else {
       throwError('Wrong Password. Try again!');
       $('#passModal').modal('hide');

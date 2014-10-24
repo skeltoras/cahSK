@@ -4,13 +4,18 @@ Template.gameItem.events({
     e.preventDefault();
 
     gameId = this._id;
+    gamePass = this.gamePass;
     player = Meteor.userId();
     playerName = Meteor.user().username;
     
     if (Games.find({_id: gameId, playerList: playerName}).count() === 1) {
       // do nothing
+      Session.set("gameId", gameId);
+      Session.set("gamePass", gamePass);
     } else {
       Games.update(gameId, {$addToSet: {playerList: playerName}, $set: {changed: new Date().getTime()}, $inc: {playersIn: 1}});
+      Session.set("gameID", gameId);
+      Session.set("gamePass", gamePass);
       console.log('Player ' + playerName + ' eingetragen'); // debug
     }
     
