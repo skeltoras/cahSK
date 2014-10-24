@@ -12,10 +12,12 @@ Template.gameItem.events({
       // do nothing
       Session.set("gameId", gameId);
       Session.set("gamePass", gamePass);
+      Session.set("playerName", playerName);
     } else {
       Games.update(gameId, {$addToSet: {playerList: playerName}, $set: {changed: new Date().getTime()}, $inc: {playersIn: 1}});
       Session.set("gameID", gameId);
       Session.set("gamePass", gamePass);
+      Session.set("playerName", playerName);
       console.log('Player ' + playerName + ' eingetragen'); // debug
     }
     

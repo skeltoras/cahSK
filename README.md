@@ -9,6 +9,7 @@ v0.3.x
 * Commented files
 * Changed debug functions and array value presentation
 * Fixed password-protection
+* Added function for remove player from playerlist on leave
 
 v0.2.x
 * Added necessary files

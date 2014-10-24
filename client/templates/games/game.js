@@ -4,7 +4,11 @@ Template.gameSingle.events({
     console.log('click begin');
   },  
   'click .leave': function(e) {
-    e.preventDefault();    
+    e.preventDefault();
+    gameId = this._id;
+    playerName = Meteor.user().username; 
+    Games.update(gameId, {$pullAll: {playerList: [playerName]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});   
+    console.log('Player ' + playerName + ' ausgetragen'); // debug
     console.log('click leave');    
     Router.go('home');
   }  
@@ -34,6 +38,14 @@ Template.gameSingle.created = function(){
 };
 
 Template.gameSingle.destroyed = function(){
+  gameId = Session.get("gameId");
+  playerName = Session.get("playerName");
+  if (Games.find({_id: gameId, playerList: playerName}).count() === 1) {
+    Games.update(gameId, {$pullAll: {playerList: [playerName]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});   
+    console.log('Player ' + playerName + ' ausgetragen'); // debug  
+  } else {
+    console.log('Player ' + playerName + ' schon ausgetragen'); // debug
+  }
   console.log('destroyed ');   
 };
 
