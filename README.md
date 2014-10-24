@@ -4,6 +4,7 @@ cah - SK
 Changelog
 ---------
 v0.3.x
+* Fixed player join on game
 
 v0.2.x
 * Added necessary files
