@@ -10,6 +10,7 @@ v0.3.x
 * Changed debug functions and array value presentation
 * Fixed password-protection
 * Added function for remove player from playerlist on leave
+* Added playerlist on game-detail page
 
 v0.2.x
 * Added necessary files

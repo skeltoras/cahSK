@@ -27,8 +27,32 @@ Template.gameSingle.helpers({
   }
 });
 
+Template.gameSingleItem.helpers({
+  ownPost: function() {
+    return this.userId == Meteor.userId();
+  },
+});
+
+Template.gameSinglePlayerlist.helpers({
+  players: function(){
+    gameID = this._id;
+    gameMaster = this.gameMaster; 
+    
+    playerList = Games.findOne({_id: gameID}).playerList;
+    player = [];
+
+    playerList.forEach(function(game){
+      if(game == gameMaster){
+         player += ['<strong>' + game + ' (Host)</strong><br>'];
+      } else {
+        player += [game + '<br>'];
+      }
+    });
+    return player;     
+  }
+});
+
 Template.gameSingle.created = function(){
-  console.log('created ');
   gameId = Session.get("gameId");
   gamePass = Session.get("gamePass");
   if (gamePass) {
@@ -46,7 +70,6 @@ Template.gameSingle.destroyed = function(){
   } else {
     console.log('Player ' + playerName + ' schon ausgetragen'); // debug
   }
-  console.log('destroyed ');   
 };
 
 Template.gameSingleModal.events({
@@ -76,7 +99,7 @@ Template.gameSingleEdit.rendered = function() {
       $(this).prop("selected", "selected");
     }
   });
-  console.log(scoreMax + ' / ' + + currentGameId);
+  //console.log(scoreMax + ' / ' + + currentGameId);
 };
 
 Template.gameSingleEdit.helpers({
