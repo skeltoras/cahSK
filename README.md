@@ -3,6 +3,10 @@ cah - SK
 
 Changelog
 ---------
+v0.4.x
+* Changed function for selected checkboxes on edit form
+* Fixed edit form for single game
+
 v0.3.x
 * Fixed player join on game
 * Added full-game check on Gameslist

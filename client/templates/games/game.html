@@ -122,18 +122,14 @@
           <label for="spectatorsMax" class="col-sm-3 control-label">Max. Zuschauer</label>
           <div class="col-sm-3">
             <select class="form-control" name="spectatorsMax" id="spectatorsMax">
-              <option>0</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              {{> selectSpectatorsMax}}
             </select>
           </div>
         </div>       
         <div class="form-group">
           <label class="col-sm-3 control-label">Decks</label>
           <div class="col-sm-9">
+            {{> checkDecks}}
             {{#each decks}}
               <label for="deck_{{_id}}" class="checkbox inline">
                 <input id="deck_{{_id}}" type="checkbox" value="{{deckText}}" name="decks" /> {{deckText}}

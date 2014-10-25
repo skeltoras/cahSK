@@ -42,3 +42,42 @@ Template.selectPlayersMax.helpers({
     return playersMaxItem;
   }
 });
+
+Template.selectSpectatorsMax.helpers({  
+  spectatorsMaxSel: function(){
+    function range(start, end) {
+      var foo = [];
+      for (var i = start; i <= end; i++) {
+        foo.push(i);
+      }
+      return foo;
+    }
+    spectatorsMax = range(0,10); 
+    checkCurrent = Games.findOne({_id: this._id}).spectatorsMax;
+    spectatorsMaxItem = [];
+    spectatorsMax.forEach(function(spec){
+      if(spec == checkCurrent){
+        spectatorsMaxItem += ['<option value="' + spec + '" selected>' + spec + '</option>'];  
+      } else {
+        spectatorsMaxItem += ['<option value="' + spec + '">' + spec + '</option>'];
+      } 
+    }); 
+    return spectatorsMaxItem;
+  }
+});
+
+Template.checkDecks.helpers({  
+  decksSel: function(){
+    decksList = Decks.find().fetch(); 
+    checkCurrent = Games.findOne({_id: this._id}).decks;
+    decksItem = [];
+    decksList.forEach(function(deck){
+      if(deck.deckText == checkCurrent){
+        decksItem += ['<label for="' + deck._id + '" class="checkbox-inline"><input id="' + deck._id + '" type="checkbox" value="' + deck.deckText + '" name="decks" checked="checked" />' + deck.deckText + '</label>'];  
+      } else {
+        decksItem += ['<label for="' + deck._id + '" class="checkbox-inline"><input id="' + deck._id + '" type="checkbox" value="' + deck.deckText + '" name="decks"/>' + deck.deckText + '</label>'];
+      } 
+    }); 
+    return decksItem;
+  }
+});
