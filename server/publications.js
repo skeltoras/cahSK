@@ -10,6 +10,10 @@ Meteor.publish('cards', function() {
   return Cards.find();
 });
 
+Meteor.publish('chats', function() {
+  return Chats.find();
+});
+
 Meteor.publish('gameData', function(gameId) {
   var currGame = Games.find({_id: gameId}, {fields: {playersIn: 1}}).fetch;
 });

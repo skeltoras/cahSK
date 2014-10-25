@@ -2,7 +2,7 @@
   <div class="chatBox">
     <div class="row">
       <div class="col-sm-12">
-        <div class="well">Chat comming soon...</div>
+        <div class="well">{{> chatSingleItem}}</div>
       </div>
     </div>
   </div>
@@ -16,15 +16,14 @@
 </template>
 
 <template name="chatSingleForm">
-  <form class="form-inline" role="form">
     <div class="form-group">
       <label class="sr-only" for="chatText">Chat Text</label>
       <input type="text" class="form-control col-xs-8" id="chatText" name="chatText" value="" placeholder="Chat ;-)">
-      <input type="submit" value="Erstellen" class="btn btn-default"/>
     </div>
-  </form>
 </template>
 
 <template name="chatSingleItem">
-  Chat comming soon...
+  {{#each chats}}
+    {{formatDate submittet}} - <strong>{{playerName}}:</strong> {{chatText}} <br>
+  {{/each}}
 </template>
