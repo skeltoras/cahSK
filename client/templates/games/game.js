@@ -103,6 +103,29 @@ Template.gameSingleEdit.rendered = function() {
 };
 
 Template.gameSingleEdit.helpers({
-  isSelected: function(){    
-  }
+  players: function(){
+    gameID = this._id;
+    gameMaster = this.gameMaster; 
+    
+    playerList = Games.findOne({_id: gameID}).playerList;
+    player = [];
+
+    playerList.forEach(function(game){
+      if(game == gameMaster){
+         player += ['<strong>' + game + ' (Host)</strong><br>'];
+      } else {
+        player += [game + '<br>'];
+      }
+    });
+    return player;     
+  },
+  decks: function() {
+    gameId = this._id;
+    decks = this.decks;
+    
+    decksList = Decks.find().fetch();
+    
+    decksList.forEach(function(deck){
+    });
+  },
 });

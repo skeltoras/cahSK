@@ -11,6 +11,8 @@ v0.3.x
 * Fixed password-protection
 * Added function for remove player from playerlist on leave
 * Added playerlist on game-detail page
+* Added edit function for single game
+* Changed function for select options
 
 v0.2.x
 * Added necessary files
