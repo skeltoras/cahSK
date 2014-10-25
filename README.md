@@ -6,6 +6,7 @@ Changelog
 v0.4.x
 * Changed function for selected checkboxes on edit form
 * Fixed edit form for single game
+* Implementet chat funcionality on preview
 
 v0.3.x
 * Fixed player join on game
