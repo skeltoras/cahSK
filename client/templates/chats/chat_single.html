@@ -24,6 +24,10 @@
 
 <template name="chatSingleItem">
   {{#each chats}}
-    {{formatDate submittet}} - <strong>{{playerName}}:</strong> {{chatText}} <br>
+    {{#if chatAnnounce}}
+      <i>{{chatAnnounceText}} </i>  <br>
+    {{else}}
+      {{formatDate submittet}} - <strong>{{playerName}}:</strong> {{chatText}} <br>
+    {{/if}}
   {{/each}}
 </template>

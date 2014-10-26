@@ -8,6 +8,7 @@ v0.4.x
 * Fixed edit form for single game
 * Added chat functionality on preview
 * Added full functional chat on single game page
+* Added chat announcements
 
 v0.3.x
 * Fixed player join on game

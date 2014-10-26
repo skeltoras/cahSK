@@ -55,10 +55,22 @@ Template.gameSinglePlayerlist.helpers({
 Template.gameSingle.created = function(){
   gameId = Session.get("gameId");
   gamePass = Session.get("gamePass");
+  playerName = Session.get("playerName");
   if (gamePass) {
     var modalId = "#passModal_" + gameId;
     return $(modalId).modal('show');       
-  }      
+  } 
+  // Player announce in chat
+  var chatAnnounceText = playerName + ' hat den Chat betreten';
+  var chat = {
+    chatAnnounce: true,
+    chatAnnounceText: chatAnnounceText,
+    gameId: gameId,
+    playerName: playerName,
+    submitted: new Date().getTime()      
+  };
+  Chats.insert(chat);    
+  console.log('createt'); //debug   
 };
 
 Template.gameSingle.destroyed = function(){
@@ -70,6 +82,16 @@ Template.gameSingle.destroyed = function(){
   } else {
     console.log('Player ' + playerName + ' schon ausgetragen'); // debug
   }
+  // Player announce in chat
+  var chatAnnounceText = playerName + ' hat den Chat verlassen';
+  var chat = {
+    chatAnnounce: true,
+    chatAnnounceText: chatAnnounceText,
+    gameId: gameId,
+    playerName: playerName,
+    submitted: new Date().getTime()      
+  };
+  Chats.insert(chat);
 };
 
 Template.gameSingleModal.events({
