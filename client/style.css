@@ -108,4 +108,5 @@ body {
 .chatBox .well {
   height: 200px;
   overflow-y: scroll;
+  word-wrap: break-word;
 }

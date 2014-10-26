@@ -9,6 +9,7 @@ v0.4.x
 * Added chat functionality on preview
 * Added full functional chat on single game page
 * Added chat announcements
+* Added show template to game single page
 
 v0.3.x
 * Fixed player join on game

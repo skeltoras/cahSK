@@ -22,7 +22,7 @@
       <!-- controlls -->
       <div class="col-sm-12"> 
         <div class="well well-sm">
-          {{#if ownPost}}
+          {{#if canStart}}
             <button type="button" class="btn btn-default begin">Starten</button>
           {{else}}
             <button type="button" class="btn btn-default" disabled="disabled">Starten</button>
@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-9 pull-right">
+      <div class="col-sm-12">
         {{> gameSingleChat}}
       </div>
     </div>
@@ -130,11 +130,6 @@
           <label class="col-sm-3 control-label">Decks</label>
           <div class="col-sm-9">
             {{> checkDecks}}
-            {{#each decks}}
-              <label for="deck_{{_id}}" class="checkbox inline">
-                <input id="deck_{{_id}}" type="checkbox" value="{{deckText}}" name="decks" /> {{deckText}}
-              </label>
-            {{/each}}
           </div>
         </div>        
         <div class="form-group">
@@ -161,8 +156,59 @@
 
 <template name="gameSingleShow">
   <div class="panel panel-default">
+    <div class="panel-heading">
+      Spiel {{gameTitle}}: Einstellungen
+    </div>
     <div class="panel-body">
-    Show
+      <form class="form-horizontal" role="form">    
+        <div class="form-group">
+          <label for="gameTitle" class="col-sm-3 control-label">Spielname</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="gameTitle" name="gameTitle" value="{{gameTitle}}" placeholder="" disabled>
+          </div>
+        </div>        
+        <div class="form-group">
+          <label for="scoreMax" class="col-sm-3 control-label">Max. Score</label>
+          <div class="col-sm-3">
+            <select class="form-control" name="scoreMax" id="scoreMax" disabled>
+              {{> selectScoreMax}}
+            </select>
+          </div>
+        </div>        
+        <div class="form-group">
+          <label for="playersMax" class="col-sm-3 control-label">Max. Spieler</label>
+          <div class="col-sm-3">
+            <select class="form-control" name="playersMax" id="playersMax" disabled>
+              {{> selectPlayersMax}}
+            </select>
+          </div>
+        </div>   
+        <div class="form-group">
+          <label for="spectatorsMax" class="col-sm-3 control-label">Max. Zuschauer</label>
+          <div class="col-sm-3">
+            <select class="form-control" name="spectatorsMax" id="spectatorsMax" disabled>
+              {{> selectSpectatorsMax}}
+            </select>
+          </div>
+        </div>       
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Decks</label>
+          <div class="col-sm-9">
+            {{> checkDecks}}
+          </div>
+        </div>        
+        <div class="form-group">
+          <label for="gamePass" class="col-sm-3 control-label">Passwort</label>        
+          <div class="col-sm-6">
+            <input type="password" class="form-control" id="gamePass" name="gamePass" value="{{gamePass}}" placeholder="Game password" disabled>
+          </div>
+          <div class="col-sm-3">
+            <label for="showPassword" class="checkbox-inline">
+              <input type="checkbox" id="showPassword" name="showPassword" disabled> anzeigen
+            </label>
+          </div>
+        </div>
+      </form>
     </div>
   </div>      
 </template>
