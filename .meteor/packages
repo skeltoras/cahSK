@@ -13,4 +13,5 @@ nemo64:bootstrap
 less
 coffeescript
 mrt:moment
+arunoda:streams
 

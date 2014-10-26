@@ -10,6 +10,7 @@ v0.4.x
 * Added full functional chat on single game page
 * Added chat announcements
 * Added show template to game single page
+* Added save function to edit form
 
 v0.3.x
 * Fixed player join on game
@@ -30,4 +31,3 @@ v0.2.x
 
 v0.1.0
 * Starting
-

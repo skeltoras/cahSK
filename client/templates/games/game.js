@@ -119,6 +119,40 @@ Template.gameSingleModal.events({
 });
 
 Template.gameSingleEdit.events({
+  'submit form': function(e) {
+    e.preventDefault();
+
+    var userName = Meteor.user().username; 
+    var gameId = this._id;
+    
+    var decks = [];
+    $('input[name=decks]:checked').each(function() {
+      decks.push($(this).val());
+    });
+    
+    var game = {
+      gameTitle: $(e.target).find('[name=gameTitle]').val(),
+      scoreMax: $(e.target).find('[name=scoreMax]').val(),
+      playersMax: $(e.target).find('[name=playersMax]').val(),
+      spectatorsMax: $(e.target).find('[name=spectatorsMax]').val(),
+      gamePass: $(e.target).find('[name=gamePass]').val(),
+      decks: decks,
+      updated: new Date().getTime()
+    };
+    
+    if(userName == this.gameMaster) {
+      Games.update(gameId, {$set: game}, function(error) {
+        if (error) {
+          // display the error to the user
+          alert(error.reason);
+        } else {
+          console.log('Spiel ' + gameTitle + ' aktualisiert'); // debug 
+        }
+      });
+    } else {
+      console.log('Error: ' + userName + ' ist nicht berechtigt!');
+    }
+  },
   'change #showPassword': function(e) {
     e.preventDefault();
     if($(e.target).is(':checked')) {
@@ -130,41 +164,7 @@ Template.gameSingleEdit.events({
 });
   
 Template.gameSingleEdit.rendered = function() {
-  this.findAll;
-  var currentGameId = this._id;
-  var scoreMax = this.scoreMax;
-  $("#scoreMax").find("option").each(function () {
-    if ($(this).val() == scoreMax) {
-      $(this).prop("selected", "selected");
-    }
-  });
-  //console.log(scoreMax + ' / ' + + currentGameId);
 };
 
 Template.gameSingleEdit.helpers({
-  players: function(){
-    gameID = this._id;
-    gameMaster = this.gameMaster; 
-    
-    playerList = Games.findOne({_id: gameID}).playerList;
-    player = [];
-
-    playerList.forEach(function(game){
-      if(game == gameMaster){
-         player += ['<strong>' + game + ' (Host)</strong><br>'];
-      } else {
-        player += [game + '<br>'];
-      }
-    });
-    return player;     
-  },
-  decks: function() {
-    gameId = this._id;
-    decks = this.decks;
-    
-    decksList = Decks.find().fetch();
-    
-    decksList.forEach(function(deck){
-    });
-  },
 });
