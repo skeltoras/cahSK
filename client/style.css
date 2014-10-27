@@ -63,13 +63,14 @@ body {
 
 .panel-card {
   color: rgba(0,0,0,1);
-  font-size: 2.2em;
+  font-size: 2.0em;
   font-weight: bold;
   height: 300px;
   width: 228px;
   -webkit-box-shadow: 3px 2px 5px #aaa;
   -moz-box-shadow: 3px 2px 5px #aaa;
-  box-shadow: 3px 2px 5px #aaa; 
+  box-shadow: 3px 2px 5px #aaa;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5); 
 }
 
 .panel-card small {
@@ -92,11 +93,30 @@ body {
   margin: 0;
   font-size: 0.3em;
   min-height: 24px;
+  background: transparent;
+  border: 0px;
 }
 
 .panel-black {
   background-color: rgba(0,0,0,1);
   color: rgba(255,255,255,1);
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+}
+
+.panel-black .panel-footer {
+  color: rgba(255,255,255,1);
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+}
+
+.panel-black .badge {
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: rgba(0,0,0,0.8);
+  background-color: rgba(255,255,255,1);
+  border-radius: 10px;
 }
 
 .box {

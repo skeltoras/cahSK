@@ -8,3 +8,11 @@ Template.cardsList.helpers({
     return Cards.find({cardIsBlack: false}, {sort: {submitted: -1}});
   }
 });
+
+Template.cardItemBlack.helpers({
+  checkWhite: function() {
+    if(this.cardNeededWhite > 1){
+      return this.cardNeededWhite;
+    }
+  }
+});

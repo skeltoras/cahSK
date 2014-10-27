@@ -14,6 +14,7 @@ v0.4.x
 * Added cards and decks files and updated router
 * Added new card form, new deck form, cards list and decks list with count
 * Added user submitted cards, -cardlist and function to remove or save this cards
+* Added admin user. Merged with master. Created v0.5.0
 
 v0.3.x
 * Fixed player join on game
