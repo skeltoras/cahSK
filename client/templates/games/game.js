@@ -1,15 +1,18 @@
 Template.gameSingle.events({
+  //button 'begin' to run the game @since 0.4.5
   'click .begin': function(e) {
-    e.preventDefault();        
-    console.log('click begin');
+    e.preventDefault(); 
+    var gameId = this._id;       
+    var gameStatus = Session.set("gameStatus", "running");
+    Router.go('gameRunning', {_id: gameId});
+    Games.update(gameId, {$set: {gameStatus: 'laufend'}});
   },  
   //button 'leave' to return to gameslist @since 0.3.7
   'click .leave': function(e) {
     e.preventDefault();
     gameId = this._id;
     playerName = Meteor.user().username; 
-    Games.update(gameId, {$pullAll: {playerList: [playerName]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});   
-    console.log('Player ' + playerName + ' ausgetragen'); // debug    
+    Games.update(gameId, {$pullAll: {playerList: [playerName]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});    
     Router.go('home');
   }  
 });
@@ -27,9 +30,19 @@ Template.gameSingle.helpers({
 });
 
 Template.gameSingle.created = function(){
-  gameId = Session.get("gameId");
-  gamePass = Session.get("gamePass");
-  playerName = Session.get("playerName");
+  var gameId = Session.get("gameId");
+  var gamePass = Session.get("gamePass");
+  var playerName = Session.get("playerName");
+  var gameStatus = Session.get("gameStatus");
+  
+  // check if game is running @since 0.4.6
+  if(gameStatus == 'running') {
+    console.log('running game'); //debug
+    //Router.go('gameRunning', {_id: gameId});
+  } else {
+    console.log('not running game'); //debug
+  }
+  
   // Player announce in chat
   var chatAnnounceText = playerName + ' hat den Chat betreten';
   var chat = {
@@ -50,22 +63,28 @@ Template.gameSingle.created = function(){
 Template.gameSingle.destroyed = function(){
   gameId = Session.get("gameId");
   playerName = Session.get("playerName");
-  if (Games.find({_id: gameId, playerList: playerName}).count() === 1) {
-    Games.update(gameId, {$pullAll: {playerList: [playerName]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});   
-    console.log('Player ' + playerName + ' ausgetragen'); // debug  
+  var gameStatus = Session.get("gameStatus");
+  
+  // check if game is running @since 0.4.6
+  if(gameStatus == 'running') {
+    console.log('running game'); //debug
+    //Router.go('gameRunning', {_id: gameId});
   } else {
-    console.log('Player ' + playerName + ' schon ausgetragen'); // debug
-  }
-  // Player announce in chat
-  var chatAnnounceText = playerName + ' hat den Chat verlassen';
-  var chat = {
-    chatAnnounce: true,
-    chatAnnounceText: chatAnnounceText,
-    gameId: gameId,
-    playerName: playerName,
-    submitted: new Date().getTime()      
-  };
-  Chats.insert(chat);
+    console.log('not running game'); //debug
+    if (Games.find({_id: gameId, playerList: playerName}).count() === 1) {
+      Games.update(gameId, {$pullAll: {playerList: [playerName]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});    
+    }
+    // Player announce in chat
+    var chatAnnounceText = playerName + ' hat den Chat verlassen';
+    var chat = {
+      chatAnnounce: true,
+      chatAnnounceText: chatAnnounceText,
+      gameId: gameId,
+      playerName: playerName,
+      submitted: new Date().getTime()      
+    };
+    Chats.insert(chat);
+  }  
 };
 
 Template.gameSingleItem.helpers({
@@ -109,7 +128,6 @@ Template.gameSingleModal.events({
     
     if(this.gamePass == checkPass) {
       $('#passModal_' + currentGameId).removeClass( "show" ).addClass( "hide" );
-      console.log('hide');
     } else {
       throwError('Wrong Password. Try again!');
       $('#passModal').modal('hide');
@@ -145,12 +163,8 @@ Template.gameSingleEdit.events({
         if (error) {
           // display the error to the user
           alert(error.reason);
-        } else {
-          console.log('Spiel ' + gameTitle + ' aktualisiert'); // debug 
         }
       });
-    } else {
-      console.log('Error: ' + userName + ' ist nicht berechtigt!');
     }
   },
   'change #showPassword': function(e) {

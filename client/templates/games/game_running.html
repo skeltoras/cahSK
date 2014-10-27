@@ -1,0 +1,45 @@
+<template name="gameRunning">
+  <div class="gameSingle">
+    <div class="row">
+      <div class="col-sm-3">
+        {{> gameBlackCards }}
+      </div>
+      <div class="col-sm-9">
+        {{> gameWhiteCards }}
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-3">
+        {{> gameSinglePlayerlist}}
+      </div>
+      <div class="col-sm-9">
+        {{> gameSingleChat}} 
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="gameBlackCards">
+  {{#each cards}}
+  <div class="blackCard"> 
+    <div class="panel panel-card panel-black">
+      <div class="panel-body">
+        <p>{{cardText}}</p>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</template>
+
+<template name="gameWhiteCards">
+  {{#each cards}}
+  <div class="whiteCard"> 
+    <div class="panel panel-card panel-default">
+      <div class="panel-body">
+        <p>{{cardText}}</p>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</template>

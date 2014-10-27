@@ -1,3 +1,17 @@
+// default user entries
+if (Meteor.users.find().count() === 0) {
+  userId = Accounts.createUser({
+    username: 'Schkeldi',
+    email: 'schkeldi@skeltoras.de',
+    password: 'test12',
+    profile: {
+      first_name: 'John',
+      last_name: 'Doe',
+      company: 'ABC',
+    }
+  });  
+};
+
 // Default Games entries
 if (Games.find().count() === 0) {
   Games.insert({
@@ -12,8 +26,8 @@ if (Games.find().count() === 0) {
     decks: ['default'],
     playerList: ['Hufflepuff', 'Degado', 'Hansi'],
     spectatorList: [],
-    userId: '9S4WKMk6jfTCcPnBd',
-    gameMaster: 'RainbowDash',
+    userId: userId,
+    gameMaster: 'Schkeldi',
     submitted: 1414142012903,
     changed: 1414142012903
   });
@@ -30,8 +44,8 @@ if (Games.find().count() === 0) {
     decks: ['default', 'Deck2'],
     playerList: ['Domenic', 'Angelo', 'Bryce', 'Tristan', 'Noe', 'Reyes', 'Howard', 'Daren', 'Xavier'],
     spectatorList: [],
-    userId: '9S4WKMk6jfTCcPnBd',
-    gameMaster: 'RainbowDash',
+    userId: userId,
+    gameMaster: 'Schkeldi',
     submitted: 1414142012903,
     changed: 1414142012903
   });
@@ -48,8 +62,8 @@ if (Games.find().count() === 0) {
     decks: ['default'],
     playerList: ['Antoine', 'James'],
     spectatorList: [],
-    userId: '9S4WKMk6jfTCcPnBd',
-    gameMaster: 'RainbowDash',
+    userId: userId,
+    gameMaster: 'Schkeldi',
     submitted: 1414142012903,
     changed: 1414142012903
   });
@@ -66,8 +80,8 @@ if (Games.find().count() === 0) {
     decks: ['Deck2'],
     playerList: [],
     spectatorList: [],
-    userId: '9S4WKMk6jfTCcPnBd',
-    gameMaster: 'RainbowDash',
+    userId: userId,
+    gameMaster: 'Schkeldi',
     submitted: 1414142012903,
     changed: 1414142012903
   });
@@ -76,10 +90,29 @@ if (Games.find().count() === 0) {
 if (Decks.find().count() === 0) {
   Decks.insert({
     deckText: 'default',
-    cardSubscriber: 'RainbowDash'
+    cardSubscriber: 'Schkeldi'
   });
   Decks.insert({
     deckText: 'Deck2',
+    cardSubscriber: 'Schkeldi'
+  });
+}
+// default cards entries
+if (Cards.find().count() === 0) {
+  Cards.insert({
+    cardText: 'Erste schwarze _____ Karte',
+    cardIsBlack: 'on',
+    cardNeededWhite: '1',
+    cardSubscriber: 'RainbowDash'
+  });
+  
+  Cards.insert({
+    cardText: 'Erste weiße Karte',
+    cardSubscriber: 'RainbowDash'
+  });
+  
+  Cards.insert({
+    cardText: 'Zweite weiße Karte',
     cardSubscriber: 'RainbowDash'
   });
 }

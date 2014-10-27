@@ -11,6 +11,7 @@ v0.4.x
 * Added chat announcements
 * Added show template to game single page
 * Added save function to edit form
+* Added cards and decks files and updated router
 
 v0.3.x
 * Fixed player join on game

@@ -18,7 +18,6 @@ Template.gameItem.events({
       Session.set("gameId", gameId);
       Session.set("gamePass", gamePass);
       Session.set("playerName", playerName);
-      console.log('Player ' + playerName + ' eingetragen'); // debug
     }
     
     Router.go('gameSingle', {_id: gameId});   
@@ -27,7 +26,6 @@ Template.gameItem.events({
   'click .loginFirst': function(e) {
     e.preventDefault();        
     throwError('Login first!');    
-    console.log('error'); // debug
   }  
 });
 
@@ -54,7 +52,6 @@ Template.gameItem.helpers({
   // check for full games @since 0.3.3
   checkPlayerFull: function() {
     if(this.playersIn == this.playersMax){
-      console.log('Spiel ' + this.gameTitle + ' voll!');
       return true;
     }
   },

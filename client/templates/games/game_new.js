@@ -39,10 +39,8 @@ Template.gamesNew.events({
     e.preventDefault();
     if($(e.target).is(':checked')) {
       document.getElementById("gamePass").attributes["type"].value = "text";
-      console.log('text');
     } else {
       document.getElementById("gamePass").attributes["type"].value = "password";
-      console.log('password');      
     } 
   }    
 });
