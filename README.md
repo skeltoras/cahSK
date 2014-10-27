@@ -12,6 +12,7 @@ v0.4.x
 * Added show template to game single page
 * Added save function to edit form
 * Added cards and decks files and updated router
+* Added new card form, new deck form, cards list and decks list with count
 
 v0.3.x
 * Fixed player join on game

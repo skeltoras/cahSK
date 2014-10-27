@@ -23,7 +23,7 @@ if (Games.find().count() === 0) {
     spectatorsMax: 0,
     gamePass: '',
     gameStatus: 'offen',
-    decks: ['default'],
+    decks: ['Standard'],
     playerList: ['Hufflepuff', 'Degado', 'Hansi'],
     spectatorList: [],
     userId: userId,
@@ -40,8 +40,8 @@ if (Games.find().count() === 0) {
     spectatorsIn: 0,
     spectatorsMax: 0,
     gamePass: '1234',
-    gameStatus: 'running',
-    decks: ['default', 'Deck2'],
+    gameStatus: 'offen',
+    decks: ['Standard', 'Testdeck'],
     playerList: ['Domenic', 'Angelo', 'Bryce', 'Tristan', 'Noe', 'Reyes', 'Howard', 'Daren', 'Xavier'],
     spectatorList: [],
     userId: userId,
@@ -59,7 +59,7 @@ if (Games.find().count() === 0) {
     spectatorsMax: 10,
     gamePass: '',
     gameStatus: 'offen',
-    decks: ['default'],
+    decks: ['Standard'],
     playerList: ['Antoine', 'James'],
     spectatorList: [],
     userId: userId,
@@ -77,7 +77,7 @@ if (Games.find().count() === 0) {
     spectatorsMax: 0,
     gamePass: '',
     gameStatus: 'offen',
-    decks: ['Deck2'],
+    decks: ['Testdeck'],
     playerList: [],
     spectatorList: [],
     userId: userId,
@@ -89,30 +89,45 @@ if (Games.find().count() === 0) {
 // Default Decks entries
 if (Decks.find().count() === 0) {
   Decks.insert({
-    deckText: 'default',
-    cardSubscriber: 'Schkeldi'
+    deckTitle: 'Standard',
+    deckOwner: userId,
+    deckOwnerName: 'Schkeldi',
+    submitted: 1414142012903
   });
   Decks.insert({
-    deckText: 'Deck2',
-    cardSubscriber: 'Schkeldi'
+    deckTitle: 'Testdeck',
+    deckOwner: userId,
+    deckOwnerName: 'Schkeldi',
+    submitted: 1414142012903 
   });
 }
 // default cards entries
 if (Cards.find().count() === 0) {
   Cards.insert({
     cardText: 'Erste schwarze _____ Karte',
-    cardIsBlack: 'on',
-    cardNeededWhite: '1',
-    cardSubscriber: 'RainbowDash'
-  });
-  
+    cardDeck: ['Standard'],
+    cardIsBlack: true,
+    cardNeededWhite: 1,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });  
   Cards.insert({
     cardText: 'Erste weiße Karte',
-    cardSubscriber: 'RainbowDash'
-  });
-  
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });  
   Cards.insert({
     cardText: 'Zweite weiße Karte',
-    cardSubscriber: 'RainbowDash'
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
   });
 }

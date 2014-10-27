@@ -2,18 +2,25 @@ Template.decksNew.events({
   'submit form': function(e) {
     e.preventDefault();
 
+    var deckOwner = Meteor.userId();
+    var deckOwnerName = Meteor.user().username;
+    var deckCheck = document.getElementById('deckTitle');
+       
     var deck = {
+      deckTitle: $(e.target).find('[name=deckTitle]').val(), 
+      deckOwner: deckOwner,
+      deckOwnerName: deckOwnerName,
+      submitted: new Date().getTime()
     };
     
-    Meteor.call('deck', deck, function(error, result) {
-      if (error)
-        return throwError(error.reason);
-
-      if (result.deckExists)
-        throwError('This link has already been posted');
-
-      Router.go('home');  
-    });
+    if(deckCheck.value != ''){
+      Decks.insert(deck);
+      console.log('deck ' + deckTitle + ' eingetragen!'); //debug
+      Router.go('decksList');
+    } else {
+      throwError('Ein Deck mit diesem Namen ist schon vorhanden');
+      Router.go('decksNew');
+    }  
   }
 });
 

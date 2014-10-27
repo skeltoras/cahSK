@@ -13,11 +13,7 @@
         <label for="scoreMax" class="col-sm-3 control-label">Max. Score</label>
         <div class="col-sm-3">
           <select class="form-control" name="scoreMax" id="scoreMax">
-            <option>4</option>
-            <option>8</option>
-            <option>12</option>
-            <option>16</option>
-            <option>20</option>
+            {{> listScoreMax}}
           </select>
         </div>
       </div>
@@ -26,24 +22,7 @@
         <label for="playersMax" class="col-sm-3 control-label">Max. Spieler</label>
         <div class="col-sm-3">
           <select class="form-control" name="playersMax" id="playersMax">
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-            <option>13</option>
-            <option>14</option>
-            <option>15</option>
-            <option>16</option>
-            <option>17</option>
-            <option>18</option>
-            <option>19</option>
-            <option>20</option>
+            {{> listPlayersMax}}
           </select>
         </div>
       </div>
@@ -52,12 +31,7 @@
         <label for="spectatorsMax" class="col-sm-3 control-label">Max. Zuschauer</label>
         <div class="col-sm-3">
           <select class="form-control" name="spectatorsMax" id="spectatorsMax">
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            {{> listSpectatorsMax}}
           </select>
         </div>
       </div>
@@ -65,11 +39,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">Decks</label>
         <div class="col-sm-9">
-          {{#each decks}}
-            <label for="deck_{{_id}}" class="checkbox inline">
-              <input id="deck_{{_id}}" type="checkbox" value="{{deckText}}" name="decks" /> {{deckText}}
-            </label>
-          {{/each}}
+          {{> listDecks}}
         </div>
       </div>
       
