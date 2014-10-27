@@ -1,0 +1,107 @@
+<template name="addNewBlackCards">
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Neue schwarze Karte
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label for="cardText" class="col-sm-3 control-label">Kartentext</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" rows="3" id="cardText" name="cardText" placeholder=""></textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <input type="submit" value="Einsenden" class="btn btn-default pull-right"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Vorschau
+      </div>
+      <div class="panel-body">
+        <div class="well">
+          <div class="panel panel-card panel-black">
+            <div class="panel-body">
+              {{> showPreview}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Hinweis
+      </div>
+      <div class="panel-body">
+        <p>Den gewünschten Text auf der Karte genau so eingeben, wie er später angezeigt werden soll. Inklusive der ' ___ ' an den Stellen, wo die weiße Karte eingesetzt werden soll.</p>
+        <p>Mindestens <strong>1</strong> und maximal <strong>4</strong> Leerstelle(n) für weiße Karten einfügen!</p>
+        <p>Die Leerstelle kennzeichnet man durch 3 Unterstriche (_).</p>
+        <p>Die Vorschau zeigt aktuell die spätere Kartenansicht</p>
+        <p>Alle Karten werden geprüft - und wenn akzeptiert - einem Deck zugeordnet.</p>
+      </div>
+    </div>    
+  </div>    
+</template>
+
+<template name="addNewWhiteCards">
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Neue weiße Karte
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label for="cardText" class="col-sm-3 control-label">Kartentext</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" rows="3" id="cardText" name="cardText" placeholder=""></textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <input type="submit" value="Einsenden" class="btn btn-default pull-right"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Vorschau
+      </div>
+      <div class="panel-body">
+        <div class="well">
+          <div class="panel panel-card panel-default">
+            <div class="panel-body">
+              {{> showPreview}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Hinweis
+      </div>
+      <div class="panel-body">
+        <p>Den gewünschten Text auf der Karte genau so eingeben, wie er später angezeigt werden soll.</p>
+        <p>Die Vorschau zeigt aktuell die spätere Kartenansicht</p>
+        <p>Alle Karten werden geprüft - und wenn akzeptiert - einem Deck zugeordnet.</p>
+      </div>
+    </div>    
+  </div>  
+</template>
+
+<template name="showPreview">
+  {{cardTextPreview}}    
+</template>

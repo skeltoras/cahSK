@@ -10,3 +10,16 @@ Template.error.rendered = function() {
     Errors.remove(error._id);
   }, 3000);
 };
+
+Template.infos.helpers({
+  infos: function() {
+    return Infos.find();
+  }
+});
+
+Template.info.rendered = function() {
+  var info = this.data;
+  Meteor.setTimeout(function () {
+    Infos.remove(info._id);
+  }, 3000);
+};

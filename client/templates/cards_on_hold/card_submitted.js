@@ -1,9 +1,10 @@
-Template.cardsNew.events({
+Template.editNewCards.events({
   'submit form': function(e) {
     e.preventDefault();
-
-    var cardOwner = Meteor.userId();
-    var cardOwnerName = Meteor.user().username;
+    
+    var currentCardId= this._id;
+    var cardOwner = this.cardOwner;
+    var cardOwnerName = this.cardOwnerName;
     var cardCheck = document.getElementById('cardText');
     var cardIsBlackCheck = document.getElementById('cardIsBlack');
     var cardHasWhiteCheck = document.getElementById('cardNeededWhite');
@@ -28,10 +29,11 @@ Template.cardsNew.events({
           if (error)
           return throwError(error.reason);
         });
+        CardsOnHold.remove(currentCardId);
         Router.go('cardsList');
       } else {
         throwError('Karte konnte nicht gespeichert werden');
-        Router.go('cardsNew');
+        Router.go('editNewCards');
       }
     } else {
       var card = {
@@ -48,24 +50,26 @@ Template.cardsNew.events({
           if (error)
           return throwError(error.reason);
         });
+        CardsOnHold.remove(currentCardId);
         Router.go('cardsList');
       } else {
         throwError('Karte konnte nicht gespeichert werden');
-        Router.go('cardsNew');
+        Router.go('editNewCards');
       }
     }
   }
 });
 
-Template.cardsNew.created = function() {
-  Session.set('cardsNewErrors', {});
-}
-
-Template.cardsNew.helpers({
-  errorMessage: function(field) {
-    return Session.get('cardsNewErrors')[field];
+Template.editNewCards.helpers({
+  checkBlack: function() {
+    isBlack = Session.get('isBlack');
+    if(isBlack == true)
+    {
+      return '<strong>ist schwarz</strong>';
+    }  
   },
-  errorClass: function(field) {
-    return !!Session.get('cardsNewErrors')[field] ? 'has-error' : '';
-  }
+  debug: function(){
+    currentId = Session.get('onHoldId');
+    console.log(currentId);
+  },
 });

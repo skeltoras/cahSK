@@ -10,6 +10,10 @@ Meteor.publish('cards', function() {
   return Cards.find();
 });
 
+Meteor.publish('cardsOnHold', function() {
+  return CardsOnHold.find();
+});
+
 Meteor.publish('chats', function() {
   return Chats.find();
 });

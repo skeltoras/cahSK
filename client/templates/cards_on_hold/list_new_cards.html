@@ -1,0 +1,44 @@
+<template name="listNewCards">
+  <div class="cards">
+    <div class="row">
+      {{#each cardsListBlack}}
+        {{> cardListItemBlack}}
+      {{/each}}
+    </div>
+    <div class="row">
+      {{#each cardsListWhite}}
+        {{> cardListItemWhite}}
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="cardListItemBlack">
+    <div class="col-sm-3"> 
+      <div class="panel panel-card panel-black">
+        <div class="panel-body">
+          {{cardText}}
+        </div> 
+        <div class="panel-footer">
+          Eingereicht von: {{cardOwnerName}}
+          <button type="button" class="btn btn-xs btn-danger begin pull-right" name="delete" id="delete">Löschen</button>
+          <button type="button" class="btn btn-xs btn-info begin pull-right" name="save" id="save">OK</button>
+        </div>      
+      </div>
+    </div>        
+</template>
+
+<template name="cardListItemWhite">
+    <div class="col-sm-3"> 
+      <div class="panel panel-card panel-default">
+        <div class="panel-body">
+          {{cardText}}    
+        </div>
+        <div class="panel-footer">
+          Eingereicht von: {{cardOwnerName}}
+          <button type="button" class="btn btn-xs btn-danger begin pull-right" name="delete" id="delete">Löschen</button>
+          <button type="button" class="btn btn-xs btn-info begin pull-right" name="save" id="save">OK</button>
+        </div> 
+      </div>
+    </div>        
+</template>

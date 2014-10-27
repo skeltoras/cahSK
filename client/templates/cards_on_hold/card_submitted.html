@@ -1,0 +1,40 @@
+<template name="editNewCards">
+  <div class="box col-sm-6">
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label for="cardText" class="col-sm-3 control-label">Kartentext</label>
+        <div class="col-sm-9">
+          <textarea class="form-control" rows="3" id="cardText" name="cardText" placeholder="">{{cardText}}</textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Decks</label>
+        <div class="col-sm-9">
+          {{> listDecksRadio}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Black Card</label>
+        <div class="col-sm-9"> 
+          <label for="cardIsBlack" class="checkbox-inline">         
+            <input type="checkbox" id="cardIsBlack" name="cardIsBlack"> Ja {{{checkBlack}}}
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cardNeededWhite" class="col-sm-3 control-label">Max. weiße Karten</label>
+        <div class="col-sm-3">
+          <select class="form-control" name="cardNeededWhite" id="cardNeededWhite">
+            {{> listWhiteCardNum}}
+          </select>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <input type="submit" value="Einfügen" class="btn btn-default"/>
+        </div>
+      </div>
+    </form>
+  </div>
+  {{debug}}
+</template>

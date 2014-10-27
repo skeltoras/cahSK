@@ -1,3 +1,4 @@
+// for decks
 Template.editDecksRadio.helpers({  
   editDeckList: function(){
     decksList = Decks.find().fetch(); 
