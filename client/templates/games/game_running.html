@@ -11,7 +11,7 @@
     <div class="spacer-20"></div>
     <div class="row">
       <div class="col-sm-3">
-        {{> gameSinglePlayerlist}}
+        {{> gameRunningPlayerlist}}
       </div>
       <div class="col-sm-9">
         {{> gameSingleChat}} 
@@ -20,16 +20,25 @@
   </div>
 </template>
 
+<template name="gameRunningPlayerlist">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Spielerliste
+    </div>
+    <div class="panel-body">
+      {{{players}}}
+    </div>
+  </div>
+</template>
+
 <template name="gameBlackCards">
-  {{#each cards}}
   <div class="blackCard"> 
     <div class="panel panel-card panel-black">
       <div class="panel-body">
-        <p>{{cardText}}</p>
+        <p>{{cardText}} </p>
       </div>
     </div>
   </div>
-  {{/each}}
 </template>
 
 <template name="gameWhiteCards">

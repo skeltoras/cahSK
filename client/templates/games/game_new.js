@@ -1,4 +1,5 @@
 Template.gamesNew.events({
+  // save game data to Collection @since 0.2.0
   'submit form': function(e) {
     e.preventDefault();
 
@@ -27,14 +28,13 @@ Template.gamesNew.events({
       // display the error to the user and abort
       if (error)
         return throwError(error.reason);
-
       // show this result but route anyway
       if (result.gameExists)
         throwError('This link has already been posted');
-
       Router.go('home');  
     });
   },
+  // change type of password input between 'text' and 'password' @since 0.2.0
   'change #showPassword': function(e) {
     e.preventDefault();
     if($(e.target).is(':checked')) {
@@ -58,8 +58,5 @@ Template.gamesNew.helpers({
   },
   decks: function() {
     return Decks.find().fetch();
-  },
-  passType: function() {
-    //return showPass;  
   }
 });

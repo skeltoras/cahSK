@@ -8,8 +8,8 @@ Template.gameItem.events({
     player = Meteor.userId();
     playerName = Meteor.user().username;
     
+    // count playersIn +1 @since 0.3.0
     if (Games.find({_id: gameId, playerList: playerName}).count() === 1) {
-      // do nothing
       Session.set("gameId", gameId);
       Session.set("gamePass", gamePass);
       Session.set("playerName", playerName);
@@ -18,8 +18,7 @@ Template.gameItem.events({
       Session.set("gameId", gameId);
       Session.set("gamePass", gamePass);
       Session.set("playerName", playerName);
-    }
-    
+    }   
     Router.go('gameSingle', {_id: gameId});   
   },
   // click button 'beitreten' if not loggedin @since 0.2.0

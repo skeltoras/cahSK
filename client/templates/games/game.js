@@ -37,12 +37,8 @@ Template.gameSingle.created = function(){
   
   // check if game is running @since 0.4.6
   if(gameStatus == 'running') {
-    console.log('running game'); //debug
-    //Router.go('gameRunning', {_id: gameId});
-  } else {
-    console.log('not running game'); //debug
-  }
-  
+    Router.go('gameRunning', {_id: gameId});
+  }  
   // Player announce in chat
   var chatAnnounceText = playerName + ' hat den Chat betreten';
   var chat = {
@@ -67,10 +63,9 @@ Template.gameSingle.destroyed = function(){
   
   // check if game is running @since 0.4.6
   if(gameStatus == 'running') {
-    console.log('running game'); //debug
-    //Router.go('gameRunning', {_id: gameId});
+    // leave player in playerlist, to save his score
   } else {
-    console.log('not running game'); //debug
+    // delete player from playerlist and game
     if (Games.find({_id: gameId, playerList: playerName}).count() === 1) {
       Games.update(gameId, {$pullAll: {playerList: [playerName]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});    
     }
@@ -110,7 +105,7 @@ Template.gameSinglePlayerlist.helpers({
 
     playerList.forEach(function(game){
       if(game == gameMaster){
-         player += ['<strong>' + game + ' (Host)</strong><br>'];
+         player += ['<i>' + game + ' (Host)</i><br>'];
       } else {
         player += [game + '<br>'];
       }
@@ -120,6 +115,7 @@ Template.gameSinglePlayerlist.helpers({
 });
 
 Template.gameSingleModal.events({
+  //check for correct password @since 0.3.0
   'submit form': function(e) {
     e.preventDefault();
     
@@ -137,6 +133,7 @@ Template.gameSingleModal.events({
 });
 
 Template.gameSingleEdit.events({
+  // save edit in game collection @since 0.3.0
   'submit form': function(e) {
     e.preventDefault();
 
@@ -175,10 +172,4 @@ Template.gameSingleEdit.events({
       document.getElementById("gamePass").attributes["type"].value = "password";      
     } 
   } 
-});
-  
-Template.gameSingleEdit.rendered = function() {
-};
-
-Template.gameSingleEdit.helpers({
 });

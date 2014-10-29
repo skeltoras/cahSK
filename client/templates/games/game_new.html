@@ -1,14 +1,14 @@
 <template name="gamesNew">
   <div class="box col-sm-6">
     <form class="form-horizontal" role="form">
-      
+      <!-- gameTitle -->
       <div class="form-group">
         <label for="gameTitle" class="col-sm-3 control-label">Spielname</label>
         <div class="col-sm-9">
           <input type="text" class="form-control" id="gameTitle" name="gameTitle" value="" placeholder="">
         </div>
       </div>
-      
+      <!-- scoreMax -->
       <div class="form-group">
         <label for="scoreMax" class="col-sm-3 control-label">Max. Score</label>
         <div class="col-sm-3">
@@ -17,7 +17,7 @@
           </select>
         </div>
       </div>
-      
+      <!-- playersMax -->
       <div class="form-group">
         <label for="playersMax" class="col-sm-3 control-label">Max. Spieler</label>
         <div class="col-sm-3">
@@ -26,7 +26,7 @@
           </select>
         </div>
       </div>
-  
+      <!-- spectatorsMax -->
       <div class="form-group">
         <label for="spectatorsMax" class="col-sm-3 control-label">Max. Zuschauer</label>
         <div class="col-sm-3">
@@ -35,14 +35,14 @@
           </select>
         </div>
       </div>
-      
+      <!-- deckList -->
       <div class="form-group">
         <label class="col-sm-3 control-label">Decks</label>
         <div class="col-sm-9">
           {{> listDecks}}
         </div>
       </div>
-      
+      <!-- password -->
       <div class="form-group">
         <label for="gamePass" class="col-sm-3 control-label">Passwort</label>        
         <div class="col-sm-6">
@@ -54,7 +54,7 @@
           </label>
         </div>
       </div>
-  
+      <!-- buttons -->
       <div class="control-group">
         <div class="controls">
           <input type="submit" value="Erstellen" class="btn btn-primary"/>
