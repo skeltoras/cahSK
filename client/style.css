@@ -148,3 +148,13 @@ body {
   overflow-y: scroll;
   word-wrap: break-word;
 }
+
+.panel-card.panel-player {
+  font-size: 1.0em;
+  height: 150px;
+  width: 114px;
+  -webkit-box-shadow: 3px 2px 5px #aaa;
+  -moz-box-shadow: 3px 2px 5px #aaa;
+  box-shadow: 3px 2px 5px #aaa;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5); 
+}

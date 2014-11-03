@@ -4,6 +4,11 @@ cah - SK
 Changelog
 ---------
 v0.5.x
+* Added function for running games
+* Added function to join running games
+* Fixed password protection
+* Added functions to player model
+* Added player score
 
 v0.4.x
 * Changed function for selected checkboxes on edit form

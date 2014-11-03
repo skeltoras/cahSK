@@ -7,19 +7,30 @@ Template.gameItem.events({
     gamePass = this.gamePass;
     player = Meteor.userId();
     playerName = Meteor.user().username;
+    gameStatus = this.gameStatus      
+    checkState = Session.get('inGame');
+    checkCurr = Session.get('gameId');
     
-    // count playersIn +1 @since 0.3.0
-    if (Games.find({_id: gameId, playerList: playerName}).count() === 1) {
-      Session.set("gameId", gameId);
-      Session.set("gamePass", gamePass);
-      Session.set("playerName", playerName);
-    } else {
-      Games.update(gameId, {$addToSet: {playerList: playerName}, $set: {changed: new Date().getTime()}, $inc: {playersIn: 1}});
-      Session.set("gameId", gameId);
-      Session.set("gamePass", gamePass);
-      Session.set("playerName", playerName);
-    }   
-    Router.go('gameSingle', {_id: gameId});   
+    if(checkState == true && checkCurr != gameId) {
+      throwError('Sie sind schon in einem Spiel angemeldet!');  
+    } else {     
+      // count playersIn +1 @since 0.3.0
+      if (Games.find({_id: gameId, playerList: playerName}).count() === 1) {
+        Session.set('gameId', gameId);
+        Session.set('gamePass', gamePass);
+        Session.set('gameStatus', gameStatus);
+        Session.set('playerName', playerName);
+        Session.set('inGame', true);
+      } else {
+        Games.update(gameId, {$addToSet: {playerList: playerName, playerIdList: player}, $set: {changed: new Date().getTime()}, $inc: {playersIn: 1}});
+        Session.set('gameId', gameId);
+        Session.set('gamePass', gamePass);
+        Session.set('gameStatus', gameStatus);
+        Session.set('playerName', playerName);
+        Session.set('inGame', true);
+      }   
+      Router.go('gameSingle', {_id: gameId});
+    }    
   },
   // click button 'beitreten' if not loggedin @since 0.2.0
   'click .loginFirst': function(e) {
@@ -27,6 +38,12 @@ Template.gameItem.events({
     throwError('Login first!');    
   }  
 });
+
+Template.gamesHome.rendered = function(){
+  if(Meteor.userId()){
+    Session.set('playerId', Meteor.userId());  
+  }
+};
 
 Template.gamesHome.helpers({
   // list of all games sorted by submit-date @since 0.1.0

@@ -9,6 +9,16 @@ if (Meteor.users.find().count() === 0) {
       last_name: 'Doe',
       company: 'ABC',
     }
+  });
+  helpOne = Accounts.createUser({
+    username: 'CrowdController',
+    email: 'crowd@skeltoras.de',
+    password: 'hallo',
+    profile: {
+      first_name: 'John',
+      last_name: 'Doe',
+      company: 'ABC',
+    }
   });  
 };
 
@@ -111,7 +121,70 @@ if (Cards.find().count() === 0) {
     cardOwner: userId,
     cardOwnerName: 'Schkeldi',
     submitted: 1414142012903
-  });  
+  }); 
+  Cards.insert({
+    cardText: 'BlackCard #2',
+    cardDeck: ['Standard'],
+    cardIsBlack: true,
+    cardNeededWhite: 1,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  }); 
+  Cards.insert({
+    cardText: 'BlackCard #3',
+    cardDeck: ['Standard'],
+    cardIsBlack: true,
+    cardNeededWhite: 1,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'BlackCard #4',
+    cardDeck: ['Standard'],
+    cardIsBlack: true,
+    cardNeededWhite: 1,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'BlackCard #5',
+    cardDeck: ['Standard'],
+    cardIsBlack: true,
+    cardNeededWhite: 1,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'BlackCard #6',
+    cardDeck: ['Testdeck'],
+    cardIsBlack: true,
+    cardNeededWhite: 1,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'BlackCard #7',
+    cardDeck: ['Testdeck'],
+    cardIsBlack: true,
+    cardNeededWhite: 1,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'BlackCard #8',
+    cardDeck: ['Testdeck'],
+    cardIsBlack: true,
+    cardNeededWhite: 1,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  }); 
   Cards.insert({
     cardText: 'Erste weiße Karte',
     cardDeck: ['Standard'],
@@ -130,4 +203,147 @@ if (Cards.find().count() === 0) {
     cardOwnerName: 'Schkeldi',
     submitted: 1414142012903
   });
+  Cards.insert({
+    cardText: 'White #3',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #4',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #5',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #6',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #7',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #8',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #9',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #10',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #11',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #12',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #13',
+    cardDeck: ['Standard'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #14',
+    cardDeck: ['Testdeck'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #15',
+    cardDeck: ['Testdeck'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+  Cards.insert({
+    cardText: 'White #16',
+    cardDeck: ['Testdeck'],
+    cardIsBlack: false,
+    cardNeededWhite: false,   
+    cardOwner: userId,
+    cardOwnerName: 'Schkeldi',
+    submitted: 1414142012903
+  });
+}
+// default hands entries
+if (Hands.find().count() === 0) {
+  Hands.insert({
+    cardText: 'Testtext',
+    cardIsBlack: true,
+    cardneededWhite: 1,
+    gameId: 'sdfsfsdfas',
+    order: 423
+  });  
+  Hands.insert({
+    cardText: 'Testtext #2',
+    cardIsBlack: false,
+    cardneededWhite: 1,
+    gameId: 'ghjgjkg',
+    order: 435
+  });  
 }

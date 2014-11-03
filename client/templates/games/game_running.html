@@ -1,11 +1,32 @@
 <template name="gameRunning">
   <div class="gameSingle">
     <div class="row">
+      <!-- controlls -->
+      <div class="col-sm-12"> 
+        <div class="well well-sm">
+          {{#if canEnd}}
+            <button type="button" class="btn btn-default end">Spiel beenden</button>
+          {{else}}
+            <button type="button" class="btn btn-default" disabled="disabled">Spiel beenden</button>
+          {{/if}}
+          <button type="button" class="btn btn-default dev">DEBUG / Hands löschen</button>      
+        </div>
+      </div>            
+    </div>
+    <div class="row">
       <div class="col-sm-3">
         {{> gameBlackCards }}
       </div>
       <div class="col-sm-9">
         {{> gameWhiteCards }}
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          {{> gameOwnCards }}
+        </div>
       </div>
     </div>
     <div class="spacer-20"></div>
@@ -23,22 +44,29 @@
 <template name="gameRunningPlayerlist">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Spielerliste
+      Spielerliste <span class="pull-right">Score</span>
     </div>
     <div class="panel-body">
-      {{{players}}}
+      {{#each players}}
+        {{playerName}} <span class="pull-right"><strong>{{score}} </strong></span><br>
+      {{/each}}
     </div>
   </div>
 </template>
 
 <template name="gameBlackCards">
+  {{#each bc}}
   <div class="blackCard"> 
     <div class="panel panel-card panel-black">
       <div class="panel-body">
         <p>{{cardText}} </p>
       </div>
+      <div class="panel-footer">
+          <span class="glyphicon glyphicon-circle-arrow-right"></span> {{cardDeck}}
+        </div>
     </div>
   </div>
+  {{/each}}
 </template>
 
 <template name="gameWhiteCards">
@@ -48,7 +76,22 @@
       <div class="panel-body">
         <p>{{cardText}}</p>
       </div>
+      <div class="panel-footer">
+          <span class="glyphicon glyphicon-circle-arrow-right"></span> {{cardDeck}}
+        </div> 
     </div>
   </div>
+  {{/each}}
+</template>
+
+<template name="gameOwnCards">
+  {{#each ownCards}}
+    <div class="ownCard col-sm-2"> 
+      <div class="panel panel-card panel-player">
+        <div class="panel-body">
+          <p>{{cardText}}</p>
+        </div>
+      </div>
+    </div>
   {{/each}}
 </template>

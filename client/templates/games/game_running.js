@@ -1,3 +1,21 @@
+Template.gameRunning.events({
+  //button 'begin' to run the game @since 0.4.5
+  'click .end': function(e) {
+    e.preventDefault();
+  },  
+  //button 'leave' to return to gameslist @since 0.3.7
+  'click .dev': function(e) {
+    e.preventDefault();
+    gameId = this._id;
+    Meteor.call('handsDebug', gameId, function(error, result) {
+      // display the error to the user and abort
+      if (error)
+        return throwError(error.reason); 
+    });
+    console.log('Debug: gelöscht');
+  }  
+});
+
 Template.gameRunning.destroyed = function(){
   gameId = Session.get("gameId");
   playerName = Session.get("playerName");
@@ -14,37 +32,59 @@ Template.gameRunning.destroyed = function(){
   Chats.insert(chat);  
 };
 
-Template.gameRunningPlayerlist.helpers({
-  players: function(){
-    gameID = this._id;
-    gameMaster = this.gameMaster; 
-    
-    playerList = Games.findOne({_id: gameID}).playerList;
-    player = [];
+Template.gameRunningPlayerlist.created = function(){
+  gameId = Session.get("gameId");
+  Meteor.call('playersList', gameId, function(error, result) {
+    // display the error to the user and abort
+    if (error)
+    return throwError(error.reason); 
+  });
+  Meteor.call('handToPlayer', gameId, function(error, result) {
+    // display the error to the user and abort
+    if (error)
+    return throwError(error.reason); 
+  });   
+};
 
-    playerList.forEach(function(game){
-      player += [game + '<br>'];
-    });
-    return player;     
+Template.gameRunningPlayerlist.helpers({
+  players: function() {
+    gameId = Session.get("gameId");
+    return Players.find({gameId: gameId});
   }
 });
 
+Template.gameBlackCards.created = function(){
+  gameId = Session.get("gameId");
+  Meteor.call('handsCreateBlack', gameId, function(error, result) {
+    // display the error to the user and abort
+    if (error)
+      return throwError(error.reason); 
+  });  
+};
+
 Template.gameBlackCards.helpers({
-  cards: function() {
-    var cardDecks = Games.findOne({_id: this._id}).decks;
-    var currentBcStack = [];
-    cardDecks.forEach(function(card){
-      currentBcStack += Cards.find({cardIsBlack: true, cardDeck: {$in: [card]}});
-    });
-    
-    console.log(currentBcStack);
-    return currentBcStack;
+  bc: function() {
+    return Hands.find({cardIsBlack: true, gameId: gameId, active: true}, {sort: {order: 1}, limit:1});
   }
 });
 
 Template.gameWhiteCards.helpers({
   cards: function() {
-    return Cards.find({cardIsBlack: false}, {sort: {submitted: -1}});
+    //return Cards.find({cardIsBlack: false}, {sort: {submitted: -1}});
   }
 });
 
+Template.gameOwnCards.created = function(){
+  Meteor.call('handsCreateWhite', gameId, function(error, result) {
+    // display the error to the user and abort
+    if (error)
+      return throwError(error.reason); 
+  });
+};
+
+Template.gameOwnCards.helpers({
+  ownCards: function() {
+    player = Session.get('playerName');
+    return Hands.find({cardIsBlack: false, gameId: gameId, active: true, playerName: player}, {sort: {order: 1}, limit:6});
+  }
+});

@@ -6,6 +6,10 @@ Meteor.publish('decks', function() {
   return Decks.find();
 });
 
+Meteor.publish('hands', function() {
+  return Hands.find();
+});
+
 Meteor.publish('cards', function() {
   return Cards.find();
 });
@@ -16,6 +20,10 @@ Meteor.publish('cardsOnHold', function() {
 
 Meteor.publish('chats', function() {
   return Chats.find();
+});
+
+Meteor.publish('players', function() {
+  return Players.find();
 });
 
 Meteor.publish('gameData', function(gameId) {

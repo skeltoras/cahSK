@@ -10,9 +10,11 @@ Template.gameSingle.events({
   //button 'leave' to return to gameslist @since 0.3.7
   'click .leave': function(e) {
     e.preventDefault();
-    gameId = this._id;
-    playerName = Meteor.user().username; 
-    Games.update(gameId, {$pullAll: {playerList: [playerName]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});    
+    var gameId = this._id;
+    var playerId = Session.get('playerId');
+    var playerName = Session.get('playerName');
+    //playerName = Meteor.user().username; 
+    Games.update(gameId, {$pullAll: {playerList: [playerName], playerIdList: [playerId]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});    
     Router.go('home');
   }  
 });
@@ -20,7 +22,8 @@ Template.gameSingle.events({
 Template.gameSingle.helpers({
   // check if game has password @since 0.3.6
   checkPassword: function() {    
-    if (this.gamePass)
+    var passCheck = Session.get('gamePassChecked');
+    if (this.gamePass && passCheck == false)
       return true;
   },
   // debug function @since 0.2.1
@@ -30,10 +33,10 @@ Template.gameSingle.helpers({
 });
 
 Template.gameSingle.created = function(){
-  var gameId = Session.get("gameId");
-  var gamePass = Session.get("gamePass");
-  var playerName = Session.get("playerName");
-  var gameStatus = Session.get("gameStatus");
+  var gameId = Session.get('gameId');
+  var gamePass = Session.get('gamePass');
+  var playerName = Session.get('playerName');
+  var gameStatus = Session.get('gameStatus');
   
   // check if game is running @since 0.4.6
   if(gameStatus == 'running') {
@@ -57,9 +60,10 @@ Template.gameSingle.created = function(){
 };
 
 Template.gameSingle.destroyed = function(){
-  gameId = Session.get("gameId");
-  playerName = Session.get("playerName");
-  var gameStatus = Session.get("gameStatus");
+  var gameId = Session.get('gameId');
+  var playerId = Session.get('playerId');
+  var playerName = Session.get('playerName');
+  var gameStatus = Session.get('gameStatus');
   
   // check if game is running @since 0.4.6
   if(gameStatus == 'running') {
@@ -67,7 +71,7 @@ Template.gameSingle.destroyed = function(){
   } else {
     // delete player from playerlist and game
     if (Games.find({_id: gameId, playerList: playerName}).count() === 1) {
-      Games.update(gameId, {$pullAll: {playerList: [playerName]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});    
+      Games.update(gameId, {$pullAll: {playerList: [playerName], playerIdList: [playerId]}, $set: {changed: new Date().getTime()}, $inc: {playersIn: -1}});    
     }
     // Player announce in chat
     var chatAnnounceText = playerName + ' hat den Chat verlassen';
@@ -85,7 +89,10 @@ Template.gameSingle.destroyed = function(){
 Template.gameSingleItem.helpers({
   // check if games-owner @since 0.4.3
   ownPost: function() {
-    return this.userId == Meteor.userId();    
+    if(this.userId == Meteor.userId()){
+      Session.set('isHost', true);
+      return true;
+    }    
   },
   // check if games-owner & players min 3 @since 0.4.3
   canStart: function() {
@@ -123,6 +130,7 @@ Template.gameSingleModal.events({
     var checkPass = $(e.target).find('[name=gamePassCheck]').val();
     
     if(this.gamePass == checkPass) {
+      Session.set('gamePassChecked', true);
       $('#passModal_' + currentGameId).removeClass( "show" ).addClass( "hide" );
     } else {
       throwError('Wrong Password. Try again!');
